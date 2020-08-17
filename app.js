@@ -114,15 +114,20 @@ function displayMenuItems(menu) {
 }
 
 function displayMenuButtons() {
+  // use reduce to get the unique categories for the btns
+
   const categories = menu.reduce(
     function (values, item) {
       if (!values.includes(item.category)) {
         values.push(item.category);
       }
+      console.log(values);
+      // output will be: "all","breakfast","lunch","dinner"
       return values;
     },
     ["all"]
   );
+
   const categoryBtns = categories
     .map(function (category) {
       return `<button class="filter-btn btn" type="button" data-id=${category}>
@@ -131,6 +136,7 @@ function displayMenuButtons() {
     })
     .join("");
   btnContainer.innerHTML = categoryBtns;
+
   const filterBtns = btnContainer.querySelectorAll(".filter-btn");
   // filter items
   filterBtns.forEach(function (btn) {
